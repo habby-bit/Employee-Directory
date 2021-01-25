@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import EmployeeInfo from "./components/EmployeeInfo";
+import TableBody from "./components/TableBody";
 import Wrapper from "./components/Wrapper"
 import API from "./utils/API";
 
@@ -20,18 +20,16 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        {/* {this.state.employees.map(employee => ( */}
-          <EmployeeInfo
-
-            // removeFriend={this.removeFriend}
-            // id={friend.id}
-            // key={friend.id}
-            // name={friend.name}
-            // image={friend.image}
-            // occupation={friend.occupation}
-            // location={friend.location}
-          />
-        {/* ))} */}
+          {this.state.employees.map(employee => (
+            <TableBody
+              key={employee.id}
+              firstName={employee.name.first}
+              lastName={employee.name.last}
+              email={employee.email}
+              phone={employee.phone}
+              age={employee.dob.age}
+            />
+          ))}
       </Wrapper>
     );
   }
