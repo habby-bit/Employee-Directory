@@ -1,38 +1,13 @@
-import React, { Component } from "react";
-import TableBody from "./components/TableBody";
-import Wrapper from "./components/Wrapper"
-import API from "./utils/API";
+import axios from "axios";
+import React, { useState, useEffect } from "react"
+import BootstrapTable from "react-bootstrap-table-next"
+import * as ReactBootstrap from "react-bootstrap"
+import Table from "./components/Table"
 
-class App extends Component {
-  state = {
-    search: "",
-    employees: [],
-    error: ""
-  };
-
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
-  componentDidMount() {
-    API.getEmployees()
-      .then(res => this.setState({ employees: res.data.results }))
-      .catch(err => console.log(err));
-  }
-
-  render() {
-    return (
-      <Wrapper>
-          {this.state.employees.map(employee => (
-            <TableBody
-              key={employee.id}
-              firstName={employee.name.first}
-              lastName={employee.name.last}
-              email={employee.email}
-              phone={employee.phone}
-              age={employee.dob.age}
-            />
-          ))}
-      </Wrapper>
-    );
-  }
+const App = () => {
+  return <div className="App">
+    <Table></Table>
+  </div>;
 }
 
 export default App;
