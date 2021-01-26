@@ -5,7 +5,6 @@ import * as ReactBootstrap from "react-bootstrap"
 
 const Table = () => {
   const [employees, setEmployees] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const getEmployeeData = async () => {
     try {
@@ -16,22 +15,36 @@ const Table = () => {
     }
   };
 
+    const handleSort = (field, order) => {
+    this.setState({
+      field,
+      order
+    });
+  }
+
   const columns = [
-    {dataField: "dob.age", text: "Age"},
-    {dataField: "name.first", text: "First Name"},
-    {dataField: "name.last", text: "Last Name"},
-    {dataField: "email", text: "Email"},
-    {dataField: "phone", text: "Phone Number"},
+    {dataField: "name.first", text: "First Name", sort: true, onSort: this.handleSort},
+    {dataField: "name.last", text: "Last Name", sort: true, onSort: this.handleSort},
+    {dataField: "dob.age", text: "Age", sort: true, onSort: this.handleSort},
+    {dataField: "email", text: "Email", sort: false},
+    {dataField: "phone", text: "Phone Number", sort: false},
   ]
 
   useEffect(() => {
     getEmployeeData()
   }, [])
+
   return <div className="App">
     <BootstrapTable 
       keyField="dob.age"
       data={employees}
       columns={columns}
+      sort={ {
+        dataField: this.state.field,
+        order: this.state.order
+      } }
+      striped
+      hover
     />
   </div>;
 }
