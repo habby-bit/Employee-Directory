@@ -16,7 +16,7 @@ const Table = () => {
     }
   };
 
-    const handleSort = (field, order) => {
+  const handleSort = (field, order) => {
     setSort({
       field,
       order
@@ -24,11 +24,54 @@ const Table = () => {
   }
 
   const columns = [
-    {dataField: "name.first", text: "First Name", sort: true, onSort: handleSort},
-    {dataField: "name.last", text: "Last Name", sort: true, onSort: handleSort},
-    {dataField: "dob.age", text: "Age", sort: true, onSort: handleSort},
-    {dataField: "email", text: "Email", sort: false},
-    {dataField: "phone", text: "Phone Number", sort: false},
+    {
+      dataField: "name.first", 
+      text: "First Name", 
+      sort: true, 
+      onSort: handleSort,
+      headerStyle: () => {
+        return { width: '200px', textAlign: 'center' }
+      },
+      style: {textAlign: "center"}
+    },
+    {
+      dataField: "name.last", 
+      text: "Last Name", 
+      sort: true, 
+      onSort: handleSort,
+      headerStyle: () => {
+        return { width: '200px', textAlign: 'center' }
+      },
+      style: {textAlign: "center"}
+    },
+    {
+      dataField: "dob.age", 
+      text: "Age", 
+      sort: true, 
+      onSort: handleSort,  
+      headerStyle: () => {
+        return { width: '80px', textAlign: 'center' }
+      }, 
+      style: {textAlign: "center"}
+    },
+    {
+      dataField: "email", 
+      text: "Email", 
+      sort: false,
+      headerStyle: () => {
+        return { textAlign: 'center' }
+      }, 
+      style: {textAlign: "center"}
+    },
+    {
+      dataField: "phone", 
+      text: "Phone Number", 
+      sort: false,
+      headerStyle: () => {
+        return { width: '190px', textAlign: 'center' }
+      }, 
+      style: {textAlign: "center"}
+    }
   ]
 
   useEffect(() => {
@@ -38,63 +81,30 @@ const Table = () => {
   const { SearchBar } = Search;
 
   return <div className="App">
-      {/* <ToolkitProvider
+    <ToolkitProvider
         keyField="email"
         data={ employees }
         columns={ columns }
         search
-        sort={ {
-            dataField: sort.field,
-            order: sort.order
-        } }
-        striped
-        hover
-      >
-      {
-            props => (
-            <div>
-                <h3>Search: <SearchBar { ...props.searchProps } /> </h3>
-                <hr/>
-            </div>
-            )
-        }
-        <BootstrapTable 
-            {...props.baseProps}
-            // sort={ {
-            //     dataField: sort.field,
-            //     order: sort.order
-            // } }
-            // striped
-            // hover
-        />
-     </ToolkitProvider> */}
-     <ToolkitProvider
-  keyField="email"
-  data={ employees }
-  columns={ columns }
-  search
-  sort={ {
-    dataField: sort.field,
-    order: sort.order
-    } }
-    // striped
-    // hover
->
-  {
-    props => (
-      <div>
-        <h3>Input something at below input field:</h3>
-        <SearchBar { ...props.searchProps } />
-        <hr />
-        <BootstrapTable
-            striped
-            hover
-          { ...props.baseProps }
-        />
-      </div>
-    )
-  }
-</ToolkitProvider>
+        sort={{
+          dataField: sort.field,
+          order: sort.order
+        }}
+    >
+      {props => (
+          <div>
+            <h1>Employee Directory </h1>
+            <h5>Search for someone: </h5>
+            <SearchBar { ...props.searchProps } />
+            <hr />
+            <BootstrapTable
+              striped
+              hover
+              { ...props.baseProps }
+            />
+          </div>
+        )}
+    </ToolkitProvider>
   </div>;
 }
 

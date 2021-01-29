@@ -1,0 +1,22 @@
+body {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+h1 {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+h5 {
+    padding-bottom: 10px;
+}
+
+#search-bar-0 {
+    width: 300px;
+}
+
+hr {
+    padding-bottom: 10px;
+}
