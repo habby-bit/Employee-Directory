@@ -17,7 +17,7 @@ The user may sort the table by First Name, Last Name, or Age. It is also possibl
 
 Below is an example image of the app!
 
-![Employee Directory Example](employees/public/EmployeesStill.png)
+![Employee Directory Example](public/EmployeesStill.png)
 
 ## App
 
